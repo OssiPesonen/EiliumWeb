@@ -7,8 +7,8 @@
             <div class="prepend">
                 <i class="fa fa-envelope"></i>
             </div>
-            <input type="text" class="form-control"  id="email" placeholder="Sähköposti" name="email" ng-model="signup.email"  required/>
-            <span ng-show="registrationForm.email.$error.email" class="help-inline">
+            <input type="text" class="form-control"  id="email" placeholder="Email" name="email" data-ng-model="signup.email"  required/>
+            <span data-ng-show="registrationForm.email.$error.email" class="help-inline">
                 Email address not correct
             </span>
         </div>
@@ -18,7 +18,7 @@
             <div class="prepend">
                 <i class="fa fa-lock"></i>
             </div>
-            <input type="password" class="form-control"  id="password" name="password" placeholder="Salasana" ng-model="signup.password" required/>
+            <input type="password" class="form-control"  id="password" name="password" placeholder="Password" data-ng-model="signup.password" required/>
             <small class="errorMessage" data-ng-show="registrationForm.password.$dirty && registrationForm.password.$invalid">
                 Insert password
             </small>
@@ -29,7 +29,7 @@
             <div class="prepend">
                 <i class="fa fa-lock"></i>
             </div>
-            <input type="password" class="form-control" name="password2" id="password2" placeholder="Salasana uudelleen" ng-model="signup.password2" password-match="signup.password" required/>
+            <input type="password" class="form-control" name="password2" id="password2" placeholder="Password again" data-ng-model="signup.password2" data-password-match="signup.password" required/>
         </div>
 
         <div class="form-buttons">
@@ -39,7 +39,7 @@
         </div>
 
         <div class="form-group form-buttons">
-            <a href="/login">Kirjaudu sisään</a>
+            <a href="/login">Login</a>
         </div>
     </div>
 </form>

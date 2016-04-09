@@ -45,10 +45,16 @@ usersModule.controller('usersLogin', function ($scope, $rootScope, authenticatio
     };
 });
 
-usersModule.controller('usersLogout', function ($scope, authenticationService) {
+usersModule.controller('usersLogout', function ($http, $scope, $rootScope, authenticationService) {
     $scope.title = 'You have logged out';
 
     $scope.logout = function () {
+        $http.post('/api/casparcg/disconnect').success(function () {
+            $rootScope.casparcg_connected = false;
+        }).error(function (data, status) {
+            Notification.error(status + ' ' + data);
+        });
+
         authenticationService.logout();
     }
 });

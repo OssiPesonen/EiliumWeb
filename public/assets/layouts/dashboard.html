@@ -1,13 +1,13 @@
 <div id="main">
-     <div ng-show="debug-mode" ng-controller="debugController" class="debug-mode-notification">
+     <div data-ng-show="debug-mode" data-ng-controller="debugController" class="debug-mode-notification">
          Debug mode
     </div>
-    <div ng-controller="usersUser" id="top-bar">
+    <div data-ng-controller="usersUser" id="top-bar">
         <user-menu></user-menu>
     </div>
     <div id="content">
-        <div ng-controller="dashboardTest" id="test">
-            <template-test></template-test>
+        <div data-ng-controller="dashboardMain" id="test">
+            <templates></templates>
         </div>
     </div>
 </div>

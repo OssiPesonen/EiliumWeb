@@ -58,6 +58,8 @@ app.config(function ($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
 })
 .run(function ($rootScope, $location, Notification) {
+    $rootScope.casparcg_connected = false;
+
     $rootScope.$on("$routeChangeError", function (event, current, previous, eventObj) {
         if (eventObj.authenticated === false) {
             Notification.error(eventObj.message);

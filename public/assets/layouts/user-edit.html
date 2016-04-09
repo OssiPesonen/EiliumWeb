@@ -1,34 +1,34 @@
 <div class="modal modal-window fade">
-    <div class="modal-overlay" ng-click="dismissModal();"></div>
+    <div class="modal-overlay" data-ng-click="dismissModal();"></div>
     <div class="modal-content">
         <div class="modal-header">
             {{title}}
-            <button id="modal-close" ng-click="dismissModal();"><i class="fa fa-times"></i></button>
+            <button id="modal-close" data-ng-click="dismissModal();"><i class="fa fa-times"></i></button>
         </div>
         <div class="modal-body">
             <form name="userEdit" role="form">
                 <h2>{{user.email}}</h2>
 
-                <input type="hidden" name="id" ng-value="user.id" value="user.id" ng-model="user.id">
+                <input type="hidden" name="id" data-ng-value="user.id" value="user.id" data-ng-model="user.id">
 
                 <div class="form-group">
                     <label>Email</label>
-                    <input name="email" ng-model="user.email" type="email">
+                    <input name="email" data-ng-model="user.email" type="email">
                 </div>
 
                 <div class="form-group">
                     <label>Password</label>
-                    <input name="password" ng-model="user.password" type="password">
+                    <input name="password" data-ng-model="user.password" type="password">
                 </div>
 
                <div class="form-group">
                     <label>Password again</label>
-                    <input name="password2" ng-model="user.password2" type="password" password-match="user.password">
-                    <small class="errorMessage" ng-show="userEdit.password2.$dirty && userEdit.password2.$invalid">Salasana ei täsmää</small>
+                    <input name="password2" data-ng-model="user.password2" type="password" data-password-match="user.password">
+                    <small class="errorMessage" data-ng-show="userEdit.password2.$dirty && userEdit.password2.$invalid">Salasana ei täsmää</small>
                 </div>
 
                 <div class="form-group form-buttons">
-                    <button type="button" class="btn submit" ng-click="submit(user);">{{buttonText}}</button>
+                    <button type="button" class="btn submit" data-ng-click="submit(user);">{{buttonText}}</button>
                 </div>
             </form>
         </div>

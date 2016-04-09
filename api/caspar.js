@@ -19,21 +19,20 @@ var _cg_connected = false;
 /**
  * Helper function for connection because it's used multiple times
  */
-function _connect(callback) {
+function _connect(cb) {
+    if(_cg_connected) {
+        return true;
+    }
+
     ccg.connect(function () {
         ccg.on('connected', function () {
             _cg_connected = true;
-            callback();
-            return true;
+            cb();
+            return _cg_connected;
         });
 
-        ccg.on('error', function(error) {
-            callback(error);
-            return false;
-        });
-
-        ccg.on('end', function() {
-            ccg.connect();
+        ccg.on('error', function() {
+            _cg_connected = false;
             return false;
         });
     });
@@ -49,7 +48,6 @@ function _disconnect() {
 }
 
 module.exports = function(router, connection) {
-
     /**
      * Route: connect
      * Path: /api/casparcg/connect/
@@ -59,11 +57,11 @@ module.exports = function(router, connection) {
      * Returns either a success code (200), or an error code 503 and message.
      */
     router.post('/casparcg/connect', function(req, res) {
-        _connect(function(error) {
+        _connect(function() {
             if(_cg_connected) {
                 res.status(200).json({success: true, message: 'Connection successful'});
             } else {
-                res.status(503).json({success: false, message: error});
+                res.status(503).json({success: false, message: 'Something went wrong. Connection could not be made.', serverconn: false});
             }
         });
     });
@@ -90,13 +88,11 @@ module.exports = function(router, connection) {
      *
      */
     router.post('/casparcg/play', function(req, res) {
-        var fields = req.body;
-
-        // Has to be changed to handle not connected -> reconnect. Experienced problems on first test
         if(!_cg_connected) {
-            return res.status(503).json({success: false, message: 'Not connected to server'});
+            res.status(503).json({success: false, message: 'Not connected to server.', serverconn: false});
         }
 
+        var fields = req.body;
         ccg.loadTemplate(fields.channel, 'JS/' + fields.template, 1, fields.inputs);
     });
 
@@ -108,14 +104,13 @@ module.exports = function(router, connection) {
      * Request body example: { channel: '1-1' }
      *
      */
-    router.post('/casparcg/stop', function() {
-        // Has to be changed to handle not connected -> reconnect. Experienced problems on first test
+    router.post('/casparcg/stop', function(req, res) {
         if(!_cg_connected) {
-            return res.status(503).json({success: false, message: 'Not connected to server'});
+            return res.status(503).json({success: false, message: 'Not connected to server', serverconn: false});
         }
 
-        // Change this to get channel from request
-        ccg.stopTemplate('1-1');
+        var fields = req.body;
+        ccg.stopTemplate(fields.channel);
     });
 
     /**
@@ -127,13 +122,11 @@ module.exports = function(router, connection) {
      *
      */
     router.put('/casparcg/update', function(req, res) {
-        var fields = req.body;
-
-        // Has to be changed to handle not connected -> reconnect. Experienced problems on first test
         if(!_cg_connected) {
             return res.status(503).json({success: false, message: 'Not connected to server'});
         }
 
+        var fields = req.body;
         ccg.updateTemplateData('1-1', fields.inputs);
     });
 };
