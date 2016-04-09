@@ -18,6 +18,8 @@ Built with AngularJS and Node.js making it lightweight and super fast. This is m
 - jsonwebtoken - Access tokens
 - bcryptjs - Password encryption. Variation of node-bcrypt without dependencies.
 - cookies - Passing access token in HTTP headers
+- body-parser - Populates the request body
+- underscore
 
 **Installation**
 
@@ -49,16 +51,19 @@ Built with AngularJS and Node.js making it lightweight and super fast. This is m
 
 #### User access control
 
-Being a web app if you run this on a network, like at a LAN event, your hosting address may be discovered and if you
-are hooked on the same network as everyone else your control panel may be messed with. I remember one event
-having to deal with such an issue on an unrelated web app which was used for showing information on a big screen.
-The IP address was clearly visible on a screen and had no access control.
+A JSON web token based authentication for users.
+
+Being a web app if you run this on a network, like at a LAN event, your hosting address may be discovered and if you are hooked on the same network as everyone else your control panel may be messed with.
+
+I remember one event having to deal with such an issue on an unrelated web app which was used for showing information on a big screen. The IP address was clearly visible on a screen and had no access control.
+
+Remember to disable registration afterwards.
 
 #### Database connection
 
-All inputs, configurations, hotkeys and possible entities will be saved to a MySQL database. I went with MySQL instead
-of MongoDB because it's more familiar to me. I might, in a later time, write small helper functions for this.
+All inputs, configurations, hotkeys and possible entities will be saved to a MySQL database. I went with MySQL instead of MongoDB because I'm more familiar with it.
 
+I might, in a later time, write small helper functions to handle data retrieval better.
 
 ## Notes
 
@@ -76,6 +81,26 @@ Do not use this authentication method without changing two things in cookie crea
 A cookie passed without HTTPS protocol makes it vulnerable and httpOnly prevents client side script access. I also havent had time to test this 100% for faults.
 
 
+## To-Do
+
+- Configuration for CasparCG template directory path and hotkeys
+- Storing all inputs in database
+- Example entities (Players, Teams)
+- Creating more templates
+  - Clock
+  - Countdown
+  - Twitter
+  - Casters
+  - Schedule
+  - Groups
+  - Playoffs
+  - Player presentation
+  - Team presentation
+  - End credits
+  - Scoreboard
+  - Advertisements
+- Image handling for templates
+- Beta test at Lantrek '16
 
 ## Future updates
 
