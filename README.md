@@ -9,11 +9,11 @@ Built with AngularJS and Node.js making it lightweight and super fast. This is m
 
 - Node.js
 - MySQL server
-- express - Routing
-- node-caspar-cg - CasparCG connection and data handling
 
 **Uses**
 
+- express - Routing
+- caspar-cg - CasparCG connection and data handling
 - mysql - Database
 - jsonwebtoken - Access tokens
 - bcryptjs - Password encryption. Variation of node-bcrypt without dependencies.
