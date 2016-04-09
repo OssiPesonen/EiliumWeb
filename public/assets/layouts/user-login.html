@@ -1,0 +1,29 @@
+<form name="loginForm" class="input-form" ng-controller="usersLogin" ng-submit="login(credentials);">
+    <h2>{{title}}</h2>
+    <h4>{{slogan}}</h4>
+    <div class="form-container">
+        <div class="form-group  input-prepend">
+            <label class="col-sm-3 control-label no-padding-right" for="email"></label>
+            <div class="prepend">
+                <i class="fa fa-user"></i>
+            </div>
+            <input type="text" class="form-control" placeholder="Email" name="email" ng-model="credentials.email"/>
+        </div>
+
+        <div class="form-group input-prepend">
+            <label class="col-sm-3 control-label no-padding-right" for="password"></label>
+            <div class="prepend">
+                <i class="fa fa-lock"></i>
+            </div>
+            <input type="password" class="form-control" placeholder="Password" ng-model="credentials.password"/>
+        </div>
+
+        <div class="form-buttons">
+            <button type="submit" class="btn submit" data-ng-disabled="loginForm.$invalid">Log in</button>
+        </div>
+
+        <div class="form-group form-buttons">
+            <a href="/register">Register</a>
+        </div>
+     </div>
+</form>

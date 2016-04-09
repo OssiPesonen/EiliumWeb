@@ -1,0 +1,27 @@
+<div class="layout">
+    <h3>Information</h3>
+    <form name="template-information" role="form">
+        <div class="form-container">
+            <div class="form-group">
+                <label for="f0"></label>
+                <input type="text" id="f0" placeholder="First" name="f0" data-ng-model="fields.inputs.f0">
+            </div>
+            <div class="form-group">
+                <label for="f1"></label>
+                <input type="text" id="f1" placeholder="Second" name="f1" data-ng-model="fields.inputs.f1">
+            </div>
+
+            <div class="form-group">
+                <label for="f2"></label>
+                <input type="text" id="f2" placeholder="Third" name="f2" data-ng-model="fields.inputs.f2">
+            </div>
+
+            <div class="form-buttons">
+                <button class="btn" data-ng-click="play(fields)">Play</button>
+                <button class="btn" data-ng-click="stop(fields)">Stop</button>
+                <button class="btn" data-ng-click="update(fields)">Update</button>
+            </div>
+        </div>
+    </form>
+
+</div>

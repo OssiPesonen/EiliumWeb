@@ -1,0 +1,45 @@
+<form name="registrationForm" class="input-form" role="form" ng-submit="register(signup)">
+    <h2>{{title}}</h2>
+    <h4>Create a new user account</h4>
+    <div class="form-group form-container">
+        <div class="form-group input-prepend">
+            <label for="email"></label>
+            <div class="prepend">
+                <i class="fa fa-envelope"></i>
+            </div>
+            <input type="text" class="form-control"  id="email" placeholder="Sähköposti" name="email" ng-model="signup.email"  required/>
+            <span ng-show="registrationForm.email.$error.email" class="help-inline">
+                Email address not correct
+            </span>
+        </div>
+
+        <div class="form-group input-prepend">
+            <label for="password"></label>
+            <div class="prepend">
+                <i class="fa fa-lock"></i>
+            </div>
+            <input type="password" class="form-control"  id="password" name="password" placeholder="Salasana" ng-model="signup.password" required/>
+            <small class="errorMessage" data-ng-show="registrationForm.password.$dirty && registrationForm.password.$invalid">
+                Insert password
+            </small>
+        </div>
+
+        <div class="form-group input-prepend">
+            <label for="password2"></label>
+            <div class="prepend">
+                <i class="fa fa-lock"></i>
+            </div>
+            <input type="password" class="form-control" name="password2" id="password2" placeholder="Salasana uudelleen" ng-model="signup.password2" password-match="signup.password" required/>
+        </div>
+
+        <div class="form-buttons">
+            <button type="submit" class="btn submit" data-ng-disabled="registrationForm.$invalid">
+                Register
+            </button>
+        </div>
+
+        <div class="form-group form-buttons">
+            <a href="/login">Kirjaudu sisään</a>
+        </div>
+    </div>
+</form>

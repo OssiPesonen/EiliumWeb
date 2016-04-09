@@ -1,0 +1,14 @@
+<div class="clearfix">
+    <div class="title">
+        <h1>EiliumWeb</h1>
+    </div>
+    <ul id="tabs">
+        <li>
+            <a href="#" data-tab="information">Information</a>
+        </li>
+    </ul>
+    <div class="user-info clearfix">
+        <button class="{{conn_class}}" data-ng-click="connection_toggle()" ng-controller="dashboardConnection">{{conn_message}}</button>
+        <button class="btn" ng-click="logout()" ng-controller="usersLogout"><i class="fa fa-sign-out"></i> &nbsp; Log out</button>
+    </div>
+</div>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html ng-app="eilium">
+<head>
+  <title>Eilium Web</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="assets/css/reset.css" type="text/css" />
+  <link rel="stylesheet" href="assets/css/screen.css" type="text/css" />
+  <link rel="stylesheet" href="assets/css/font-awesome.min.css" type="text/css" />
+  <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,800,700,600' rel='stylesheet' type='text/css'>
+  <base href="/">
+</head>
+<body class="{{bodyClass}}">
+<div ng-view id="ng-view"></div>
+
+<!-- Libraries -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/angular.min.js"></script>
+<script src="assets/js/angular-route.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/angularModal.js"></script>
+<script src="assets/js/angular-storage.js"></script>
+<script src="assets/js/angular-animate.min.js"></script>
+<script src="assets/js/angular.sanitize.min.js"></script>
+<script src="assets/js/notifications.js"></script>
+
+<!-- AngularJS custom codes -->
+
+<script src="app/app.js"></script>
+
+<script src="app/Users/users.js"></script>
+<script src="app/Authentication/authentication.js"></script>
+<script src="app/Dashboard/dashboard.js"></script>
+</body>
+</html>

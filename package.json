@@ -1,0 +1,20 @@
+{
+  "name"          : "eilium",
+  "version"       : "0.0.1",
+  "description"   : "CasparCG Control Panel",
+  "main"          : "server.js",
+  "author"        : "Ossi 'Rcls' Pesonen",
+  "scripts"       : {
+    "start"         : "node server.js"
+  },
+  "dependencies"  : {
+    "express"       : "*",
+    "mysql"         : "*",
+    "body-parser"   : "*",
+    "underscore"    : "*",
+    "jsonwebtoken"  : "*",
+    "bcrypt"        : "*",
+    "cookies"       : "*",
+    "caspar-cg"     : "*"
+  }
+}

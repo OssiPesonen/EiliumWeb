@@ -1,0 +1,549 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    background: #354d57;
+    background: -moz-linear-gradient(top,  #354d57 0%, #1d2a2f 100%);
+    background: -webkit-linear-gradient(top,  #354d57 0%,#1d2a2f 100%);
+    background: linear-gradient(to bottom,  #354d57 0%,#1d2a2f 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#354d57', endColorstr='#1d2a2f',GradientType=0 );
+    font: 400 14px 'Montserrat', 'Open Sans', Arial, Verdana;
+    color: #111;
+    position: relative;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5 {
+    font: 200 18px 'Montserrat', 'Open Sans', Arial, Verdana;
+    color: #FFF;
+}
+
+h1 {
+    font-size: 24px;
+}
+
+h2 {
+    font-size: 20px;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: rgba(255,255,255,0.2);
+    margin: 20px 0;
+}
+
+a,
+a:focus {
+    text-decoration: none;
+    outline: none;
+    transition: all 0.35s;
+    color: #1bc4bf;
+}
+
+a:hover {
+    color: #999;
+}
+
+input[type=text],
+input[type=password],
+input[type=tel],
+input[type=email],
+input[type=number],
+select {
+    border: 0;
+    border-bottom: 2px solid #334b54;
+    background: none;
+    padding: 0 20px;
+    height: 50px;
+    line-height: 50px;
+    width: 100%;
+    max-width:400px;
+    box-sizing: border-box;
+    outline: 0;
+    color: #FFF;
+    font: 300 13px 'Montserrat';
+    transition: .15s linear;
+}
+
+input:focus {
+    border-color: #5e747c;
+}
+
+::-webkit-input-placeholder {
+    color:    #5e747c;
+}
+
+:-moz-placeholder {
+    color:    #5e747c;
+    opacity:  1;
+}
+
+::-moz-placeholder {
+    color:    #5e747c;
+    opacity:  1;
+}
+
+:-ms-input-placeholder {
+    color:    #5e747c;
+}
+
+select {
+    background: #eee;
+    padding: 10px 15px;
+    border: 0;
+    box-sizing: border-box;
+    width: 300px;
+}
+
+button,
+.btn {
+    border: 0;
+    border-radius: 30px;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 30px;
+    background: #1bc4bf;
+    color: #FFF;
+    text-transform: uppercase;
+    text-align: center;
+    min-width: 100px;
+    cursor: pointer;
+    display: inline-block;
+    margin: 10px 0;
+    transition: .15s linear;
+    font: 600 12px 'Montserrat', 'Open Sans', Arial, Verdana;
+    outline: 0;
+}
+
+button:hover,
+.btn:hover {
+    background: #1d2a2f !important;
+}
+
+.ng-enter {
+    transition: 0.25s linear all;
+    opacity: 0;
+    max-height: 0;
+}
+
+.ng-enter-active {
+    opacity: 1;
+    max-height: 999px;
+    transition: 0.25s linear all;
+}
+
+.ng-leave {
+    transition: 0.25s linear all;
+    opacity: 0;
+}
+
+.my-animation.ng-enter-stagger {
+    transition-delay: 0.1s;
+    transition-duration: 0s;
+}
+
+.ng-leave-active {
+    opacity: 0;
+}
+
+.ng-enter-stagger {
+    transition-delay: 0.1s;
+}
+
+.ng-leave-stagger {
+    transition-delay: 0.1s;
+}
+
+input.ng-invalid:not(.ng-empty) {
+    border-bottom: 2px solid #de4f4f;
+}
+
+@-webkit-keyframes rotating /* Safari and Chrome */
+{
+    from {
+        -ms-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    to {
+        -ms-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes btn {
+    from {
+        -ms-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    to {
+        -ms-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+.ui-notification {
+    position: fixed;
+    z-index: 500;
+    background-color: #222;
+    color: #FFF;
+    font: 300 12px 'Montserrat';
+    padding: 20px 20px;
+    opacity: 1.0;
+    transition: all 0.35s;
+    box-shadow: 0 0 25px rgba(0,0,0,0.1);
+}
+
+.ui-notification.success {
+    background: #3bbb71;
+}
+
+.ui-notification.error {
+    background: #de4f4f;
+}
+
+.debug-mode-notification {
+    width: 100%;
+    padding: 10px 0;
+    display: block;
+    text-align: center;
+    background: #de4f4f;
+    color: #FFF;
+    text-transform: uppercase;
+    font: 300 12px 'Montserrat';
+}
+
+.ui-notification.killed {
+    opacity: 0;
+}
+
+small.errorMessage {
+    display: inline-block;
+    vertical-align: middle;
+    color: #a1a1a1;
+    font-size: 16px;
+    text-align: right;
+    margin-left: 50%;
+    margin-top: 10px;
+}
+
+.modal-overlay {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+}
+
+.modal-window {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    z-index: 101;
+    top: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transition: all 0.35s;
+}
+
+.modal-content {
+    position: absolute;
+    max-height: 100%;
+    overflow: auto;
+    top: 50%;
+    width: 1000px;
+    left: 50%;
+    background: #272634;
+    transform: translate(-50%, -50%);
+    transition: all 0.35s;
+}
+
+.modal-body {
+    padding: 40px;
+}
+
+.modal-header {
+    background: #fff;
+    color: #000;
+    text-align: center;
+    padding: 25px 0;
+    font-size: 24px;
+    position: relative;
+}
+
+.modal-header #modal-close {
+    position: absolute;
+    top: 50%;
+    right: 30px;
+    border: 0;
+    width: 30px;
+    color: #FFF;
+    height: 30px;
+    line-height: 20px;
+    text-align: center;
+    background: #1bc4bf;
+    border-radius: 100%;
+    transform: translateY(-50%);
+    transition: all 0.35s;
+    cursor: pointer;
+}
+
+.modal-header #modal-close:hover {
+    background: #999;
+}
+
+.fade {
+    opacity: 0;
+    transition: opacity 0.25s;
+}
+
+.fade-in {
+    opacity: 1.0;
+    transition: all 0.25s;
+}
+
+.fade-out {
+    opacity: 0;
+    transition: all 02.5s;
+}
+
+
+.grid, .grid-container {
+    font-size: 0;
+}
+
+.grid > * {
+    display: inline-block;
+    box-sizing: border-box;
+    vertical-align: top;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.grid-1 {
+    width: 8.33333%;
+}
+
+.grid-2 {
+    width: 16.66667%;
+}
+
+.grid-3 {
+    width: 25%;
+}
+
+.grid-4 {
+    width: 33.33333%;
+}
+
+.grid-5 {
+    width: 41.66667%;
+}
+
+.grid-6 {
+    width: 50%;
+}
+
+.grid-7 {
+    width: 58.33333%;
+}
+
+.grid-8 {
+    width: 66.66667%;
+}
+
+.grid-9 {
+    width: 75%;
+}
+
+.grid-10 {
+    width: 83.33333%;
+}
+
+.grid-11 {
+    width: 91.66667%;
+}
+
+.grid-12 {
+    width: 100%;
+}
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+#ng-view {
+    font-size: 0;
+    height: 100%;
+    display: block;
+}
+
+.input-form {
+    font-size: 13px;
+    position: fixed;
+    color: #FFF;
+    top: 50%;
+    left: 50%;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    width: 380px;
+}
+
+.input-form h2 {
+    font-size: 42px;
+    color: #FFF;
+}
+
+.input-form h4 {
+    font-weight: 400;
+    font-size: 12px;
+    margin-top: 20px;
+    margin-bottom: 100px;
+    color: #1bc4bf;
+}
+
+.input-form .submit {
+    margin: 0 auto;
+}
+
+.input-form .form-container {
+    padding: 0;
+}
+
+.input-form .form-buttons {
+    margin-top: 50px;
+}
+
+.input-form .form-container input {
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+}
+
+.form-group {
+    padding: 10px 0;
+}
+
+.form-group-row {
+    margin: 3px 0;
+}
+
+.form-group.input-prepend,
+.form-group.input-append {
+    position: relative;
+    max-width:400px;
+}
+
+.form-group.input-prepend input,
+.form-group.input-append input {
+    width: 100%;
+    padding: 0 45px;
+}
+
+.form-group.input-prepend .prepend,
+.form-group.input-append .append {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #5e747c;
+}
+
+.form-group.input-prepend .prepend {
+    left: 10px;
+}
+
+.form-group.input-append .append {
+    right: 10px;
+}
+
+#top-bar {
+    width: 100%;
+    display: block;
+    background: #1d2a2f;
+    color: #FFF;
+    padding: 20px 40px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+#top-bar .title {
+    float: left;
+}
+
+#top-bar h1 {
+    line-height: 65px;
+}
+
+#top-bar #tabs {
+    float: left;
+    padding: 0 50px;
+}
+
+#top-bar #tabs li a {
+    line-height: 65px;
+}
+
+button.connect {
+    background: #3bbb71;
+}
+
+button.disconnect {
+    background: #ff2a00;
+}
+
+#top-bar .user-info {
+    float: right;
+}
+
+#top-bar .user-info > * {
+    float: left;
+}
+
+#top-bar .user-profile {
+    line-height: 60px;
+    padding-right: 50px;
+}
+
+#top-bar .user-info button {
+    margin-right: 10px;
+}
+
+#content {
+    padding: 50px;
+}
+
+.layout {
+    padding: 25px;
+    background: rgba(0,0,0,0.25);
+    width: 25%;
+}
+
+.layout h2 {
+    margin-bottom: 20px;
+}
+
+.layout .form-buttons button {
+    margin-right: 10px;
+}
