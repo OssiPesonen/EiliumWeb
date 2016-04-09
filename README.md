@@ -21,7 +21,10 @@ Built with AngularJS and Node.js making it lightweight and super fast. This is m
 
 **Installation**
 
-- git clone git@project
+- git clone https://github.com/OssiPesonen/EiliumWeb.git
+- create a MySQL database and run the SQL commands in database.sql
+- create config.js file from config.dist
+- Set conn_port (localhost:conn_port), MySQL information and JSON Web Token secret
 - Open project folder with cmd and write:
     - npm install
     - node server.js

@@ -1,4 +1,5 @@
 module.exports = {
+    conn_port          : 8080,
     mysql_host         : "",
     mysql_user         : "",
     mysql_password     : "",
