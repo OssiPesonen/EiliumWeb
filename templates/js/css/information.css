@@ -1,0 +1,39 @@
+#box {
+	width: 770px;
+	height: 125px;
+	background-color: rgba(0,0,0,0.85);
+	top: 580px;
+	left: -1280px;
+	opacity: 0;
+	position: relative;
+}
+
+#box:after {
+	content:"";
+	width: 100px;
+	height: 5px;
+	background: #ff9933;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	z-index: 1;
+}
+
+#boxContent {
+	font-size: 16px;
+	font-family: 'opensans-regular';
+	padding: 15px 50px;
+	color: #FFF;
+	height: 100%;
+}
+
+span {
+	display: block;
+	margin-bottom: 0;
+	line-height: 18px;
+}
+
+#f0 {
+	font-size: 16px;
+	font-family: 'opensans-regular';
+}

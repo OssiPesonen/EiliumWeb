@@ -3,14 +3,14 @@
 
 HTML, CSS and JavaScript solution.
 
-Built with AngularJS and Node.js making it lightweight and super fast. This is merely a skeleton with only one working test template. It includes a CasparCG Node.js library for communication (https://github.com/respectTheCode/node-caspar-cg) which I have not yet had the pleasure of testing completely. At this point there is only one test element there to fire a test template.
+Built with AngularJS and Node.js making it lightweight and super fast. This is merely a skeleton with only one working test template. It includes a CasparCG Node.js library for communication (https://github.com/respectTheCode/node-caspar-cg) which I have not yet had the pleasure of testing completely.
 
 **Requirements**
 
 - Node.js
 - MySQL server
 - express - Routing
-- caspar-cg - CasparCG connection library
+- node-caspar-cg - CasparCG connection and data handling
 
 **Uses**
 
@@ -29,10 +29,19 @@ Built with AngularJS and Node.js making it lightweight and super fast. This is m
     - npm install
     - node server.js
 
+
 **Monitoring code changes**
 
 If you're like me you'd like to install `supervisor` to reboot Node so it implements newest changes to the code. Do not however run this while in production because if you make changes the connection to CasparCG will be lost and the application will not know this. Atleast for now. I might create an event lists
 
+**JSON Web Token**
+
+Do not use this authentication method without changing two things in cookie creation:
+
+    httpOnly: true
+    secure: true
+
+A cookie passed without HTTPS protocol makes it vulnerable and httpOnly prevents client side script access. I also havent had time to test this 100% for faults.
 
 **Directory structure**
 
@@ -40,6 +49,7 @@ If you're like me you'd like to install `supervisor` to reboot Node so it implem
 - /public/ - HTML public directory used as index.
     - /app/ - AngularJS controllers
     - /assets/ - CSS, fonts, images, js, HTML templates
+- /templates/ - An example templates directory for CasparCG server with one test template
 
 **Root files**
 

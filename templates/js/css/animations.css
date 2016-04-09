@@ -1,0 +1,63 @@
+.animationMoveIn {
+    -webkit-animation-name: moveIn;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-fill-mode: forwards;
+}
+
+.animationMoveOut {
+    -webkit-animation-name: moveOut;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes moveIn {
+    0% {
+        bottom: -1280px;
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+        left: 100px;
+    }
+}
+@-webkit-keyframes moveOut {
+    0% {
+        left: 100px;
+        opacity: 1;
+    }
+    100% {
+        left: 1280px;
+        opacity: 0;
+    }
+}
+
+.animationFadeIn {
+    -webkit-animation-name: fadeIn;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-fill-mode: forwards;
+}
+
+.animationFadeOut {
+    -webkit-animation-name: fadeOut;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
+@-webkit-keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}

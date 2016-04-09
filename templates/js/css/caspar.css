@@ -1,0 +1,40 @@
+* {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -webkit-backface-visibility: hidden;
+    -webkit-transition: translate3d(0, 0, 0);
+    overflow: hidden;
+}
+
+@font-face {
+    font-family: 'opensans-regular';
+    src: url('../font/opensans-regular-webfont.eot');
+    src: url('../font/opensans-regular-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../font/opensans-regular-webfont.woff') format('woff'),
+    url('../font/opensans-regular-webfont.ttf') format('truetype'),
+    url('../font/opensans-regular-webfont.svg#webfont') format('svg');
+}
+
+html, body {
+    width: 1280px;
+    height: 720px;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased !important;
+}
+
+body {
+    font: 300 18px 'Open Sans';
+    color: #FFF;
+}
+
+#demo {
+    display: none;
+    position: absolute;
+    left: -100px;
+    top: -100px;
+    color: #222222;
+    font-size: 0;
+}
