@@ -30,19 +30,6 @@ Built with AngularJS and Node.js making it lightweight and super fast. This is m
     - node server.js
 
 
-**Monitoring code changes**
-
-If you're like me you'd like to install `supervisor` to reboot Node so it implements newest changes to the code. Do not however run this while in production because if you make changes the connection to CasparCG will be lost and the application will not know this. Atleast for now. I might create an event lists
-
-**JSON Web Token**
-
-Do not use this authentication method without changing two things in cookie creation:
-
-    httpOnly: true
-    secure: true
-
-A cookie passed without HTTPS protocol makes it vulnerable and httpOnly prevents client side script access. I also havent had time to test this 100% for faults.
-
 **Directory structure**
 
 - /api/ - All API routes splitted in separate files which work at http://localhost/api/
@@ -58,7 +45,6 @@ A cookie passed without HTTPS protocol makes it vulnerable and httpOnly prevents
 - package.json - Project information and dependencies
 - server.js - Node.js start file
 
-
 ## Includes
 
 #### User access control
@@ -72,6 +58,24 @@ The IP address was clearly visible on a screen and had no access control.
 
 All inputs, configurations, hotkeys and possible entities will be saved to a MySQL database. I went with MySQL instead
 of MongoDB because it's more familiar to me. I might, in a later time, write small helper functions for this.
+
+
+## Notes
+
+**Monitoring code changes**
+
+If you're like me you'd like to install `supervisor` to reboot Node so it implements newest changes to the code. Do not however run this while in production because if you make changes the connection to CasparCG will be lost and the application will not know this. Atleast for now.
+
+**JSON Web Token**
+
+Do not use this authentication method without changing two things in cookie creation:
+
+    httpOnly: true
+    secure: true
+
+A cookie passed without HTTPS protocol makes it vulnerable and httpOnly prevents client side script access. I also havent had time to test this 100% for faults.
+
+
 
 ## Future updates
 
