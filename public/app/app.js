@@ -97,4 +97,21 @@ app.config(function ($routeProvider, $locationProvider) {
             element.addClass('enter-in');
         }
     );
+})
+.directive('uiTabs', function () {
+    // Stuff here
+});
+
+app.factory('socket', function ($rootScope) {
+    var socket = io.connect();
+    return {
+        on: function (eventName, callback) {
+            socket.on(eventName, function () {
+                var args = arguments;
+                $rootScope.$apply(function () {
+                    callback.apply(socket, args);
+                });
+            });
+        }
+    };
 });

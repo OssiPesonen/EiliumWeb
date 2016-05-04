@@ -20,6 +20,7 @@
         left: 100px;
     }
 }
+
 @-webkit-keyframes moveOut {
     0% {
         left: 100px;
@@ -52,12 +53,45 @@
     }
 }
 
-
 @-webkit-keyframes fadeOut {
     0% {
         opacity: 1;
     }
     100% {
         opacity: 0;
+    }
+}
+
+
+.animationMoveFromLeft {
+    -webkit-animation-name: moveFromLeft;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-fill-mode: forwards;
+}
+
+.animationMoveToLeft {
+    -webkit-animation-name: moveToLeft;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes moveToLeft {
+    0% {
+        left: 0;
+        opacity: 1;
+    }
+    100% {
+        left: -400px;
+        opacity: 0;
+    }
+}
+@-webkit-keyframes moveFromLeft {
+    0% {
+        left: -400px;
+        opacity: 0;
+    }
+    100% {
+        left: 0;
+        opacity: 1;
     }
 }

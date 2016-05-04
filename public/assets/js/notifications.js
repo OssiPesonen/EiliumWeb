@@ -96,6 +96,9 @@ notificationsModule.provider('Notification', function() {
                 if (angular.isNumber(args.delay)) {
                     $timeout(function() {
                         templateElement.addClass('killed');
+                        setTimeout(function() {
+                            templateElement.remove();
+                        }, 250);
                     }, args.delay);
                 }
 

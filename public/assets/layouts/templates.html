@@ -1,27 +1,684 @@
-<div class="layout">
-    <h3>Information</h3>
-    <form name="template-information" role="form">
-        <div class="form-container">
-            <div class="form-group">
-                <label for="f0"></label>
-                <input type="text" id="f0" placeholder="First" name="f0" data-ng-model="fields.inputs.f0">
-            </div>
-            <div class="form-group">
-                <label for="f1"></label>
-                <input type="text" id="f1" placeholder="Second" name="f1" data-ng-model="fields.inputs.f1">
-            </div>
+<div id="tabs" tab-key-scroll>
+    <ul>
+        <li data-ng-class="{ active: tabSet('information') }">
+            <a href="#" data-ng-click="setTab('information')">Information</a>
+        </li>
+        <li data-ng-class="{ active: tabSet('groups') }">
+            <a href="#" data-ng-click="setTab('groups')">Groups</a>
+        </li>
+        <li data-ng-class="{ active: tabSet('brackets') }">
+            <a href="#" data-ng-click="setTab('brackets')">Brackets</a>
+        </li>
+    </ul>
+</div>
 
-            <div class="form-group">
-                <label for="f2"></label>
-                <input type="text" id="f2" placeholder="Third" name="f2" data-ng-model="fields.inputs.f2">
+<div class="tab" data-ng-show="tab === 'information'">
+    <div class="layout">
+        <h3>Information</h3>
+        <div class="balloon" help-balloon>
+            <i class="fa fa-question-circle"></i>
+            <div class="content">You can pre-set content on each box and then double click on a box to select it as
+                an
+                active element.
+                This element then gets used as your information content on the template.
+                Remember to activate box to make textfields active.
+            </div>
+        </div>
+        <form name="template-information" role="form">
+            <div class="selectable-boxes" toggle-inputs>
+                <div class="box selected">
+                    <div class="form-container">
+                        <div class="form-group">
+                            <input type="text" placeholder="First" name="f1" data-ng-model="fields.information.f1"
+                                   data-ng-disabled="isEnabled">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" placeholder="Second" name="f2" data-ng-model="fields.information.f2"
+                                   data-ng-disabled="isEnabled">
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" placeholder="Third" name="f3" data-ng-model="fields.information.f3"
+                                   data-ng-disabled="isEnabled">
+                        </div>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="form-container">
+                        <div class="form-group">
+                            <input type="text" placeholder="First" name="f4" data-ng-model="fields.information.f4"
+                                   data-ng-disabled="isDisabled">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" placeholder="Second" name="f5" data-ng-model="fields.information.f5"
+                                   data-ng-disabled="isDisabled">
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" placeholder="Third" name="f6" data-ng-model="fields.information.f6"
+                                   data-ng-disabled="isDisabled">
+                        </div>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="form-container">
+                        <div class="form-group">
+                            <input type="text" placeholder="First" name="f7" data-ng-model="fields.information.f7"
+                                   data-ng-disabled="isDisabled">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" placeholder="Second" name="f8" data-ng-model="fields.information.f8"
+                                   data-ng-disabled="isDisabled">
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" placeholder="Third" name="f9" data-ng-model="fields.information.f9"
+                                   data-ng-disabled="isDisabled">
+                        </div>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="form-container">
+                        <div class="form-group">
+                            <input type="text" placeholder="First" name="f10" data-ng-model="fields.information.f10"
+                                   data-ng-disabled="isDisabled">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" placeholder="Second" name="f11"
+                                   data-ng-model="fields.information.f11"
+                                   data-ng-disabled="isDisabled">
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" placeholder="Third" name="f12" data-ng-model="fields.information.f12"
+                                   data-ng-disabled="isDisabled">
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="form-buttons">
-                <button class="btn" data-ng-click="play(fields)">Play</button>
-                <button class="btn" data-ng-click="stop(fields)">Stop</button>
-                <button class="btn" data-ng-click="update(fields)">Update</button>
+                <button class="btn" data-ng-click="play('1-11', 'information', fields)" button-click>Play</button>
+                <button class="btn" data-ng-click="stop('1-11')">Stop</button>
+                <button class="btn" data-ng-click="update('1-11', 'information', fields)" button-click>Update
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <div class="layout">
+        <h3>Clock</h3>
+        <form name="template-clock" role="form">
+            <div class="form-container">
+                <div class="form-group">
+                    <input type="text" placeholder="Title" name="f0" data-ng-model="fields.clock.f0">
+                </div>
+                <div class="form-buttons">
+                    <button class="btn" data-ng-click="play('1-12', 'clock', fields)">Play</button>
+                    <button class="btn" data-ng-click="stop('1-12')">Stop</button>
+                    <button class="btn" data-ng-click="update('1-12', 'clock', fields)">Update</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="layout">
+        <h3>Casters</h3>
+        <div class="balloon" help-balloon>
+            <i class="fa fa-question-circle"></i>
+            <div class="content">
+                You can leave the center content empty in which case the box will not show.
+            </div>
+        </div>
+        <form name="template-casters" role="form">
+            <div class="grid-container">
+                <div class="form-container grid-4" style="padding-right: 10px;">
+                    <p class="strong">Left</p>
+                    <div class="form-group">
+                        <input type="text" placeholder="First line" name="f0" data-ng-model="fields.casters.f0">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="Second line" name="f1" data-ng-model="fields.casters.f1">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="Third line" name="f2" data-ng-model="fields.casters.f2">
+                    </div>
+                </div>
+                <div class="form-container grid-4">
+                    <p class="strong">Center</p>
+                    <div class="form-group">
+                        <input type="text" placeholder="First line" name="f6" data-ng-model="fields.casters.f6">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="Second line" name="f7" data-ng-model="fields.casters.f7">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="Third line" name="f8" data-ng-model="fields.casters.f8">
+                    </div>
+                </div>
+                <div class="form-container grid-4" style="padding-right: 10px;">
+                    <p class="strong">Right</p>
+                    <div class="form-group">
+                        <input type="text" placeholder="First line" name="f3" data-ng-model="fields.casters.f3">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="Second line" name="f4" data-ng-model="fields.casters.f4">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="Third line" name="f5" data-ng-model="fields.casters.f5">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-buttons">
+                <button class="btn" data-ng-click="play('1-12', 'casters', fields)">Play</button>
+                <button class="btn" data-ng-click="stop('1-12')">Stop</button>
+                <button class="btn" data-ng-click="update('1-12', 'casters', fields)">Update</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="layout">
+        <h3>Schedule</h3>
+        <form name="template-schedule" role="form">
+            <div class="form-container">
+                <div class="form-group">
+                    <input type="text" placeholder="Title" name="f0" data-ng-model="fields.schedule.f0">
+                </div>
+                <div class="form-group grid-container">
+                    <div class="grid-2">
+                        <input type="text" maxlength="5" max="5" placeholder="Time" name="f1"
+                               data-ng-model="fields.schedule.f1">
+                    </div>
+                    <div class="grid-10" style="padding-left: 15px;">
+                        <input type="text" placeholder="Title" name="f2" data-ng-model="fields.schedule.f2">
+                    </div>
+                </div>
+                <div class="form-group grid-container">
+                    <div class="grid-2">
+                        <input type="text" maxlength="5" max="5" placeholder="Time" name="f3"
+                               data-ng-model="fields.schedule.f3">
+                    </div>
+                    <div class="grid-10" style="padding-left: 15px;">
+                        <input type="text" placeholder="Title" name="f4" data-ng-model="fields.schedule.f4">
+                    </div>
+                </div>
+                <div class="form-group grid-container">
+                    <div class="grid-2">
+                        <input type="text" maxlength="5" max="5" placeholder="Time" name="f5"
+                               data-ng-model="fields.schedule.f5">
+                    </div>
+                    <div class="grid-10" style="padding-left: 15px;">
+                        <input type="text" placeholder="Title" name="f6" data-ng-model="fields.schedule.f6">
+                    </div>
+                </div>
+                <div class="form-group grid-container">
+                    <div class="grid-2">
+                        <input type="text" maxlength="5" max="5" placeholder="Time" name="f7"
+                               data-ng-model="fields.schedule.f7">
+                    </div>
+                    <div class="grid-10" style="padding-left: 15px;">
+                        <input type="text" placeholder="Title" name="f8" data-ng-model="fields.schedule.f8">
+                    </div>
+                </div>
+                <div class="form-group grid-container">
+                    <div class="grid-2">
+                        <input type="text" maxlength="5" max="5" placeholder="Time" name="f9"
+                               data-ng-model="fields.schedule.f9">
+                    </div>
+                    <div class="grid-10" style="padding-left: 15px;">
+                        <input type="text" placeholder="Title" name="f10" data-ng-model="fields.schedule.f10">
+                    </div>
+                </div>
+                <div class="form-group grid-container">
+                    <div class="grid-2">
+                        <input type="text" maxlength="5" max="5" placeholder="Time" name="f11"
+                               data-ng-model="fields.schedule.f11">
+                    </div>
+                    <div class="grid-10" style="padding-left: 15px;">
+                        <input type="text" placeholder="Title" name="f12" data-ng-model="fields.schedule.f12">
+                    </div>
+                </div>
+
+                <div class="form-buttons">
+                    <button class="btn" data-ng-click="play('1-10', 'schedule', fields)">Play</button>
+                    <button class="btn" data-ng-click="stop('1-10')">Stop</button>
+                    <button class="btn" data-ng-click="update('1-10', 'schedule', fields)">Update</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="layout">
+        <h3>Sponsors</h3>
+        <form name="template-sponsors" role="form">
+            <div class="form-container">
+                <div class="form-buttons">
+                    <button class="btn" data-ng-click="play('1-13', 'sponsors', fields)">Play</button>
+                    <button class="btn" data-ng-click="stop('1-13')">Stop</button>
+                    <button class="btn" data-ng-click="update('1-13', 'sponsors', fields)">Update</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="tab groups" data-ng-show="tab === 'groups'">
+    <div class="layout">
+        <h3>Groups</h3>
+        <form name="template-groups" role="form">
+
+            <div class="form-container grid-container">
+                <div class="form-container grid-12" style="padding-right: 5px;">
+                    <div class="form-group">
+                        <input type="text" placeholder="Block title" name="f0" data-ng-model="fields.groups.f0">
+                    </div>
+                </div>
+                <div class="form-container grid-3" style="padding-right: 5px;">
+                    <div class="form-group">
+                        <input type="text" placeholder="Title" name="f1" data-ng-model="fields.groups.f1">
+                    </div>
+
+                    <div class="form-group grid-container">
+                        <div class="grid-10">
+                            <input type="text" placeholder="Team\Player" name="f2" data-ng-model="fields.groups.f2">
+                        </div>
+                        <div class="grid-2" style="padding-left: 10px;">
+                            <input type="text" placeholder="0" style="width: 50px;" name="f3"
+                                   data-ng-model="fields.groups.f3">
+                        </div>
+                    </div>
+
+                    <div class="form-group grid-container">
+                        <div class="grid-10">
+                            <input type="text" placeholder="Team\Player" name="f4" data-ng-model="fields.groups.f4">
+                        </div>
+                        <div class="grid-2" style="padding-left: 10px;">
+                            <input type="text" placeholder="0" style="width: 50px;" name="f5"
+                                   data-ng-model="fields.groups.f5">
+                        </div>
+                    </div>
+
+                    <div class="form-group grid-container">
+                        <div class="grid-10">
+                            <input type="text" placeholder="Team\Player" name="f6" data-ng-model="fields.groups.f6">
+                        </div>
+                        <div class="grid-2" style="padding-left: 10px;">
+                            <input type="text" placeholder="0" style="width: 50px;" name="f7"
+                                   data-ng-model="fields.groups.f7">
+                        </div>
+                    </div>
+
+                    <div class="form-group grid-container">
+                        <div class="grid-10">
+                            <input type="text" placeholder="Team\Player" name="f8" data-ng-model="fields.groups.f8">
+                        </div>
+                        <div class="grid-2" style="padding-left: 10px;">
+                            <input type="text" placeholder="0" style="width: 50px;" name="f9"
+                                   data-ng-model="fields.groups.f9">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="form-container grid-3" style="padding-right: 5px;">
+                    <div class="form-group">
+                        <input type="text" placeholder="Title" name="f10" data-ng-model="fields.groups.f10">
+                    </div>
+
+                    <div class="form-group grid-container">
+                        <div class="grid-10">
+                            <input type="text" placeholder="Team\Player" name="f11" data-ng-model="fields.groups.f11">
+                        </div>
+                        <div class="grid-2" style="padding-left: 10px;">
+                            <input type="text" placeholder="0" style="width: 50px;" name="f12"
+                                   data-ng-model="fields.groups.f12">
+                        </div>
+                    </div>
+
+                    <div class="form-group grid-container">
+                        <div class="grid-10">
+                            <input type="text" placeholder="Team\Player" name="f13" data-ng-model="fields.groups.f13">
+                        </div>
+                        <div class="grid-2" style="padding-left: 10px;">
+                            <input type="text" placeholder="0" style="width: 50px;" name="f14"
+                                   data-ng-model="fields.groups.f14">
+                        </div>
+                    </div>
+
+                    <div class="form-group grid-container">
+                        <div class="grid-10">
+                            <input type="text" placeholder="Team\Player" name="f15" data-ng-model="fields.groups.f15">
+                        </div>
+                        <div class="grid-2" style="padding-left: 10px;">
+                            <input type="text" placeholder="0" style="width: 50px;" name="f16"
+                                   data-ng-model="fields.groups.f16">
+                        </div>
+                    </div>
+
+                    <div class="form-group grid-container">
+                        <div class="grid-10">
+                            <input type="text" placeholder="Team\Player" name="f17" data-ng-model="fields.groups.f17">
+                        </div>
+                        <div class="grid-2" style="padding-left: 10px;">
+                            <input type="text" placeholder="0" style="width: 50px;" name="f18"
+                                   data-ng-model="fields.groups.f18">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-container grid-3" style="padding-right: 5px;">
+                    <div class="form-group">
+                        <input type="text" placeholder="Title" name="f19" data-ng-model="fields.groups.f19">
+                    </div>
+
+                    <div class="form-group grid-container">
+                        <div class="grid-10">
+                            <input type="text" placeholder="Team\Player" name="f20" data-ng-model="fields.groups.f20">
+                        </div>
+                        <div class="grid-2" style="padding-left: 10px;">
+                            <input type="text" placeholder="0" style="width: 50px;" name="f21"
+                                   data-ng-model="fields.groups.f21">
+                        </div>
+                    </div>
+
+                    <div class="form-group grid-container">
+                        <div class="grid-10">
+                            <input type="text" placeholder="Team\Player" name="f2" data-ng-model="fields.groups.f22">
+                        </div>
+                        <div class="grid-2" style="padding-left: 10px;">
+                            <input type="text" placeholder="0" style="width: 50px;" name="f23"
+                                   data-ng-model="fields.groups.f23">
+                        </div>
+                    </div>
+
+                    <div class="form-group grid-container">
+                        <div class="grid-10">
+                            <input type="text" placeholder="Team\Player" name="f24" data-ng-model="fields.groups.f24">
+                        </div>
+                        <div class="grid-2" style="padding-left: 10px;">
+                            <input type="text" placeholder="0" style="width: 50px;" name="f25"
+                                   data-ng-model="fields.groups.f25">
+                        </div>
+                    </div>
+
+                    <div class="form-group grid-container">
+                        <div class="grid-10">
+                            <input type="text" placeholder="Team\Player" name="f26" data-ng-model="fields.groups.f26">
+                        </div>
+                        <div class="grid-2" style="padding-left: 10px;">
+                            <input type="text" placeholder="0" style="width: 50px;" name="f27"
+                                   data-ng-model="fields.groups.f27">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-container grid-3" style="padding-right: 5px;">
+                    <div class="form-group">
+                        <input type="text" placeholder="Title" name="f28" data-ng-model="fields.groups.f28">
+                    </div>
+
+                    <div class="form-group grid-container">
+                        <div class="grid-10">
+                            <input type="text" placeholder="Team\Player" name="f29" data-ng-model="fields.groups.f29">
+                        </div>
+                        <div class="grid-2" style="padding-left: 10px;">
+                            <input type="text" placeholder="0" style="width: 50px;" name="f30"
+                                   data-ng-model="fields.groups.f30">
+                        </div>
+                    </div>
+
+                    <div class="form-group grid-container">
+                        <div class="grid-10">
+                            <input type="text" placeholder="Team\Player" name="f31" data-ng-model="fields.groups.f31">
+                        </div>
+                        <div class="grid-2" style="padding-left: 10px;">
+                            <input type="text" placeholder="0" style="width: 50px;" name="f32"
+                                   data-ng-model="fields.groups.f32">
+                        </div>
+                    </div>
+
+                    <div class="form-group grid-container">
+                        <div class="grid-10">
+                            <input type="text" placeholder="Team\Player" name="f33" data-ng-model="fields.groups.f33">
+                        </div>
+                        <div class="grid-2" style="padding-left: 10px;">
+                            <input type="text" placeholder="0" style="width: 50px;" name="f34"
+                                   data-ng-model="fields.groups.f34">
+                        </div>
+                    </div>
+
+                    <div class="form-group grid-container">
+                        <div class="grid-10">
+                            <input type="text" placeholder="Team\Player" name="f35" data-ng-model="fields.groups.f35">
+                        </div>
+                        <div class="grid-2" style="padding-left: 10px;">
+                            <input type="text" placeholder="0" style="width: 50px;" name="f36"
+                                   data-ng-model="fields.groups.f36">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-buttons">
+                    <button class="btn" data-ng-click="play('1-20', 'groups', fields)">Play</button>
+                    <button class="btn" data-ng-click="stop('1-20')">Stop</button>
+                    <button class="btn" data-ng-click="update('1-20', 'groups', fields)">Update</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div class="tab brackets" data-ng-show="tab === 'brackets'">
+    <div class="layout">
+        <h3>Brackets</h3>
+        <form name="template-brackets" role="form">
+            <div class="form-container" style="padding-right: 5px;">
+                <div class="form-group">
+                    <input type="text" placeholder="Bracket title" name="f0" data-ng-model="fields.brackets.f0">
+                </div>
+            </div>
+            <div class="grid-container-10 row">
+                   <div class="form-group pair grid-2">
+                    <div class="team grid-container">
+                        <div class="grid-10">
+                            <input type="text" placeholder="Team\Player" name="f1"
+                                   data-ng-model="fields.brackets.f1">
+                        </div>
+                        <div class="grid-2" style="padding-left: 10px;">
+                            <input type="text" placeholder="0" style="width: 50px;" name="f2"
+                                   data-ng-model="fields.brackets.f2">
+                        </div>
+                    </div>
+                    <div class="team grid-container">
+                        <div class="grid-10">
+                            <input type="text" placeholder="Team\Player" name="f3"
+                                   data-ng-model="fields.brackets.f3">
+                        </div>
+                        <div class="grid-2" style="padding-left: 10px;">
+                            <input type="text" placeholder="0" style="width: 50px;" name="f4"
+                                   data-ng-model="fields.brackets.f4">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group pair grid-2">
+                    <div class="team grid-container">
+                        <div class="grid-10">
+                            <input type="text" placeholder="Team\Player" name="f5"
+                                   data-ng-model="fields.brackets.f5">
+                        </div>
+                        <div class="grid-2" style="padding-left: 10px;">
+                            <input type="text" placeholder="0" style="width: 50px;" name="f6"
+                                   data-ng-model="fields.brackets.f6">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-2"></div>
+
+                <div class="form-group pair grid-2">
+                    <div class="team grid-container">
+                        <div class="grid-2" style="padding-right: 10px;">
+                            <input type="text" placeholder="0" style="width: 50px;" name="f7"
+                                   data-ng-model="fields.brackets.f7">
+                        </div>
+                        <div class="grid-10">
+                            <input type="text" placeholder="Team\Player" name="f8"
+                                   data-ng-model="fields.brackets.f8">
+                        </div>
+                    </div>
+                </div>
+
+                  <div class="form-group pair grid-2">
+                    <div class="team grid-container">
+                        <div class="grid-2" style="padding-right: 10px;">
+                            <input type="text" placeholder="0" style="width: 50px;" name="f9"
+                                   data-ng-model="fields.brackets.f9">
+                        </div>
+                        <div class="grid-10">
+                            <input type="text" placeholder="Team\Player" name="f10"
+                                   data-ng-model="fields.brackets.f10">
+                        </div>
+                    </div>
+                    <div class="team grid-container">
+                        <div class="grid-2" style="padding-right: 10px;">
+                            <input type="text" placeholder="0" style="width: 50px;" name="f11"
+                                   data-ng-model="fields.brackets.f11">
+                        </div>
+                        <div class="grid-10">
+                            <input type="text" placeholder="Team\Player" name="f12"
+                                   data-ng-model="fields.brackets.f12">
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- row -->
+
+            <!-- finalists -->
+
+            <div class="grid-container-10 row">
+                <div class="grid-2"></div>
+                <div class="grid-2"></div>
+
+                <div class="form-group pair grid-2">
+                    <div class="team grid-container">
+                        <div class="grid-10">
+                            <input type="text" placeholder="Team\Player" name="f13"
+                                   data-ng-model="fields.brackets.f13">
+                        </div>
+                        <div class="grid-2" style="padding-left: 10px;">
+                            <input type="text" placeholder="0" style="width: 50px;" name="14"
+                                   data-ng-model="fields.brackets.f14">
+                        </div>
+                    </div>
+                    <div class="team grid-container">
+                        <div class="grid-10">
+                            <input type="text" placeholder="Team\Player" name="f15"
+                                   data-ng-model="fields.brackets.f15">
+                        </div>
+                        <div class="grid-2" style="padding-left: 10px;">
+                            <input type="text" placeholder="0" style="width: 50px;" name="f16"
+                                   data-ng-model="fields.brackets.f16">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-2"></div>
+                <div class="grid-2"></div>
+            </div>
+
+            <div class="grid-container-10 row">
+                <div class="form-group pair grid-2">
+                    <div class="team grid-container">
+                        <div class="grid-10">
+                            <input type="text" placeholder="Team\Player" name="f17"
+                                   data-ng-model="fields.brackets.f17">
+                        </div>
+                        <div class="grid-2" style="padding-left: 10px;">
+                            <input type="text" placeholder="0" style="width: 50px;" name="f18"
+                                   data-ng-model="fields.brackets.f18">
+                        </div>
+                    </div>
+                    <div class="team grid-container">
+                        <div class="grid-10">
+                            <input type="text" placeholder="Team\Player" name="f19"
+                                   data-ng-model="fields.brackets.f19">
+                        </div>
+                        <div class="grid-2" style="padding-left: 10px;">
+                            <input type="text" placeholder="0" style="width: 50px;" name="f20"
+                                   data-ng-model="fields.brackets.f20">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group pair grid-2">
+                    <div class="team grid-container">
+                        <div class="grid-10">
+                            <input type="text" placeholder="Team\Player" name="f21"
+                                   data-ng-model="fields.brackets.f21">
+                        </div>
+                        <div class="grid-2" style="padding-left: 10px;">
+                            <input type="text" placeholder="0" style="width: 50px;" name="f22"
+                                   data-ng-model="fields.brackets.f22">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-2"></div>
+
+                <div class="form-group pair grid-2">
+                    <div class="team grid-container">
+                        <div class="grid-2" style="padding-right: 10px;">
+                            <input type="text" placeholder="0" style="width: 50px;" name="f23"
+                                   data-ng-model="fields.brackets.f23">
+                        </div>
+                        <div class="grid-10">
+                            <input type="text" placeholder="Team\Player" name="f24"
+                                   data-ng-model="fields.brackets.f24">
+                        </div>
+                    </div>
+                </div>
+
+                  <div class="form-group pair grid-2">
+                    <div class="team grid-container">
+                        <div class="grid-2" style="padding-right: 10px;">
+                            <input type="text" placeholder="0" style="width: 50px;" name="f25"
+                                   data-ng-model="fields.brackets.f25">
+                        </div>
+                        <div class="grid-10">
+                            <input type="text" placeholder="Team\Player" name="f26"
+                                   data-ng-model="fields.brackets.f26">
+                        </div>
+                    </div>
+                    <div class="team grid-container">
+                        <div class="grid-2" style="padding-right: 10px;">
+                            <input type="text" placeholder="0" style="width: 50px;" name="f27"
+                                   data-ng-model="fields.brackets.f27">
+                        </div>
+                        <div class="grid-10">
+                            <input type="text" placeholder="Team\Player" name="f28"
+                                   data-ng-model="fields.brackets.f28">
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- row -->
+
+            <div class="form-buttons">
+                <button class="btn" data-ng-click="play('1-20', 'brackets', fields)">Play</button>
+                <button class="btn" data-ng-click="stop('1-20')">Stop</button>
+                <button class="btn" data-ng-click="update('1-20', 'brackets', fields)">Update</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div id="bottom-bar">
+    <form name="channel-clear" role="form">
+        <div class="form-container">
+            <div class="form-buttons">
+                <button class="btn" data-ng-click="save_fields(fields)">Save fields</button>
+                <button class="btn" data-ng-click="clear('1')">Clear Channel</button>
             </div>
         </div>
     </form>
-
 </div>

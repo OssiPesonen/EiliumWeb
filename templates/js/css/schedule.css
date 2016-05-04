@@ -1,0 +1,47 @@
+#box {
+	position: fixed;
+	top: 0;
+	left: -400px;
+	width: 400px;
+	height: 100%;
+	background-color: rgba(0,0,0,0.85);
+	opacity: 0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+#boxContent {
+	font: 200 18px 'Montserrat';
+	padding: 15px 0;
+	color: #FFF;
+	height: 100%;
+}
+
+span {
+	display: block;
+	margin-bottom: 0;
+	line-height: 18px;
+}
+
+#f0 {
+	font: 700 24px 'Montserrat';
+	margin-bottom: 25px;
+	text-transform: uppercase;
+	background: #FFF;
+	color: #6787cf;
+	padding: 25px 30px;
+	display: inline-block;
+}
+
+.time-row {
+	padding: 20px 40px 20px 20px;
+	font: 700 18px 'Montserrat';
+	text-transform: uppercase;
+}
+
+.time-row .time {
+	color: #6787cf;
+	font-size: 24px;
+	margin-bottom: 10px;
+}

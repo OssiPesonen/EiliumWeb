@@ -1,8 +1,9 @@
 var express         = require('express');
 var mysql           = require('mysql');
 var bodyParser      = require('body-parser');
+var io              = require('socket.io');
 var config          = require('./config');
-var app = express();
+var app             = express();
 
 function API(){
     var self = this;
@@ -39,21 +40,20 @@ API.prototype.configureExpress = function(connection) {
 
     var router = express.Router();
     app.use('/api', router);
-    require('./api/api')(router, connection);
-    require('./api/users')(router, connection);
-    require('./api/caspar')(router, connection);
 
     app.get('*', function(req, res) {
         res.sendFile(__dirname + '/public/index.html');
     });
 
-    self.startServer();
-};
-
-API.prototype.startServer = function() {
-    app.listen(config.conn_port, function(){
+    var server = app.listen(config.conn_port, function(){
         console.log("Eilium launched at port " + config.conn_port);
     });
+
+    io = io.listen(server);
+
+    require('./api/api')(router, connection);
+    require('./api/users')(router, connection);
+    require('./api/caspar')(router, connection, io);
 };
 
 API.prototype.stop = function(err) {

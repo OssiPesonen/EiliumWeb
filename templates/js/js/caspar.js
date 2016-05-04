@@ -1,5 +1,5 @@
 $(function () {
-    play();
+    play(); // For demo purposes
 });
 
 var dataCaspar = {};

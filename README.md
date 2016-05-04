@@ -15,6 +15,7 @@ Built with AngularJS and Node.js making it lightweight and super fast. This is m
 - express - Routing
 - caspar-cg - CasparCG connection and data handling
 - mysql - Database
+- socket.io - Used for net events to emit disconnections etc. to AngularJS
 - jsonwebtoken - Access tokens
 - bcryptjs - Password encryption. Variation of node-bcrypt without dependencies.
 - cookies - Passing access token in HTTP headers
@@ -65,6 +66,10 @@ All inputs, configurations, hotkeys and possible entities will be saved to a MyS
 
 I might, in a later time, write small helper functions to handle data retrieval better.
 
+#### Socket.io
+
+All Net events such as connection, disconnection and errors are transported via socket.io to AngularJS which listens to these events. The events then flip the connection button.
+
 ## Notes
 
 **Monitoring code changes**
@@ -73,12 +78,12 @@ If you're like me you'd like to install `supervisor` to reboot Node so it implem
 
 **JSON Web Token**
 
-Do not use this authentication method without changing two things in cookie creation:
+Do not use this authentication method on a live environment without changing two things in cookie creation:
 
     httpOnly: true
     secure: true
 
-A cookie passed without HTTPS protocol makes it vulnerable and httpOnly prevents client side script access. I also havent had time to test this 100% for faults.
+A cookie passed without HTTPS protocol makes it vulnerable and httpOnly prevents client side script access. You might also want to insert an expiration for the token. I also havent had time to test this 100% for faults.
 
 
 ## To-Do
@@ -87,7 +92,6 @@ A cookie passed without HTTPS protocol makes it vulnerable and httpOnly prevents
 - Storing all inputs in database
 - Example entities (Players, Teams)
 - Creating more templates
-  - Clock
   - Countdown
   - Twitter
   - Casters
@@ -108,7 +112,7 @@ A cookie passed without HTTPS protocol makes it vulnerable and httpOnly prevents
 
 I am hoping to create in the near future a single configuration file where you can input all tabs, templates and fields.
 
-    var Eilium: {
+    var Eilium = {
         tab: {
             name: 'Information',
             template: {

@@ -1,0 +1,75 @@
+#box {
+	width: 300px;
+	height: 150px;
+	background-color: rgba(0,0,0,0.85);
+	top: 90%;
+	transform: translateY(-90%);
+	-webkit-transform: translateY(-90%);
+	opacity: 0;
+	position: fixed;
+	overflow: visible;
+	z-index: 20;
+	right: -300px;
+}
+
+#boxContent {
+	color: #FFF;
+	height: 100%;
+	position: relative;
+	overflow: hidden;
+}
+
+#boxContent > div {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    bottom: 10px;
+    opacity: 0;
+    transition: opacity 1s linear;
+}
+
+#boxContent > div.active {
+	opacity: 1;
+}
+
+span {
+	display: block;
+	margin-bottom: 0;
+	line-height: 18px;
+}
+
+.animationMoveInFromRight {
+	-webkit-animation-name: moveInFromRight;
+	-webkit-animation-duration: 1s;
+	-webkit-animation-fill-mode: forwards;
+}
+
+.animationMoveOutFromRight {
+	-webkit-animation-name: moveOutFromRight;
+	-webkit-animation-duration: 1s;
+	-webkit-animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes moveInFromRight {
+	0% {
+		right: -400px;
+		opacity: 0;
+	}
+	100% {
+		right: 100px;
+		opacity: 1;
+	}
+}
+
+@-webkit-keyframes moveOutFromRight {
+	0% {
+		right: 100px;
+		opacity: 1;
+	}
+	100% {
+		right: -400px;
+		opacity: 0;
+	}
+}

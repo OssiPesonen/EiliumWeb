@@ -1,9 +1,10 @@
 {
-  "name"          : "eilium",
-  "version"       : "0.0.1",
-  "description"   : "CasparCG Control Panel",
+  "name"          : "Eilium",
+  "version"       : "0.0.3",
+  "description"   : "CasparCG Control Panel - Node.js and AngularJS",
   "main"          : "server.js",
-  "author"        : "Ossi 'Rcls' Pesonen",
+  "author"        : "Ossi Pesonen",
+  "licence"       : "MIT",
   "scripts"       : {
     "start"         : "node server.js"
   },
@@ -15,6 +16,7 @@
     "jsonwebtoken"  : "*",
     "bcryptjs"      : "*",
     "cookies"       : "*",
-    "caspar-cg"     : "*"
+    "caspar-cg"     : "*",
+    "socket.io"     : "*"
   }
 }

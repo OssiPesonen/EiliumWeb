@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS `entity_values` (
 
 CREATE TABLE IF NOT EXISTS `fields` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `layout` varchar(255) COLLATE utf8_swedish_ci NOT NULL,
+  `template` varchar(255) COLLATE utf8_swedish_ci NOT NULL,
   `key` varchar(255) COLLATE utf8_swedish_ci NOT NULL,
   `value` varchar(255) COLLATE utf8_swedish_ci NOT NULL,
   PRIMARY KEY (`id`)

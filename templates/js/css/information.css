@@ -1,30 +1,24 @@
 #box {
-	width: 770px;
-	height: 125px;
+	width: 900px;
+	height: 150px;
 	background-color: rgba(0,0,0,0.85);
-	top: 580px;
+	top: 90%;
+	transform: translateY(-90%);
+	-webkit-transform: translateY(-90%);
 	left: -1280px;
 	opacity: 0;
 	position: relative;
-}
-
-#box:after {
-	content:"";
-	width: 100px;
-	height: 5px;
-	background: #ff9933;
-	position: absolute;
-	left: 0;
-	bottom: 0;
-	z-index: 1;
+	overflow: visible;
+	z-index: 20;
 }
 
 #boxContent {
-	font-size: 16px;
-	font-family: 'opensans-regular';
-	padding: 15px 50px;
+	padding: 60px 40px;
 	color: #FFF;
 	height: 100%;
+	overflow: visible;
+	font: 700 18px 'Montserrat';
+	text-transform: uppercase;
 }
 
 span {
@@ -34,6 +28,55 @@ span {
 }
 
 #f0 {
-	font-size: 16px;
-	font-family: 'opensans-regular';
+	font: 700 24px 'Montserrat';
+	position: absolute;
+	top: -25px;
+	height: 50px;
+	padding: 0 40px;
+	text-transform: uppercase;
+	line-height: 50px;
+	left: -25px;
+	background: #6787cf;
+	color: #FFF;
+	width: auto;
+	display:block;
+}
+
+#f1 {
+	font-size: 24px;
+}
+
+#f1,
+#f2 {
+	margin-bottom: 10px;
+	display:block;
+}
+
+#f2 {
+	font-weight: 500;
+	color: #6787cf;
+}
+
+
+@-webkit-keyframes moveIn {
+	0% {
+		bottom: -1280px;
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+		left: 300px;
+	}
+}
+
+
+@-webkit-keyframes moveOut {
+	0% {
+		left: 300px;
+		opacity: 1;
+	}
+	100% {
+		left: 1280px;
+		opacity: 0;
+	}
 }

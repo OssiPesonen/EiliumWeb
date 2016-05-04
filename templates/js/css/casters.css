@@ -1,0 +1,203 @@
+#left,
+#right,
+#center {
+	width: 400px;
+	height: 150px;
+	background-color: rgba(0,0,0,0.85);
+	top: 90%;
+	transform: translateY(-90%);
+	-webkit-transform: translateY(-90%);
+	opacity: 0;
+	position: fixed;
+	overflow: visible;
+	z-index: 20;
+}
+
+#left {
+	left: -400px;
+}
+
+#center {
+	top: auto;
+	left: 50%;
+	bottom: -150px;
+	transform: translateY(0);
+	-webkit-transform: translateY(0);
+	transform: translateX(-50%);
+	-webkit-transform: translateX(-50%);
+}
+
+#right {
+	right: -400px;
+}
+
+#left-content,
+#right-content,
+#center-content {
+	padding: 60px 40px;
+	color: #FFF;
+	height: 100%;
+	overflow: visible;
+	font: 700 24px 'Montserrat';
+	text-transform: uppercase;
+}
+
+#right-content {
+	text-align: right;
+}
+
+span {
+	display: block;
+	margin-bottom: 0;
+	line-height: 18px;
+}
+
+#f0,
+#f3,
+#f6 {
+	font: 700 24px 'Montserrat';
+	position: absolute;
+	top: -25px;
+	height: 50px;
+	padding: 0 40px;
+	text-transform: uppercase;
+	line-height: 50px;
+	left: -25px;
+	background: #6787cf;
+	color: #FFF;
+	width: auto;
+	display:block;
+}
+
+#f2,
+#f5,
+#f8 {
+	color: #6787cf;
+	margin-top: 10px;
+	font-size: 18px;
+}
+
+#f7,
+#f8 {
+	text-align: center;
+}
+
+#f6 {
+	left: 50%;
+	transform: translateX(-50%);
+	-webkit-transform: translateX(-50%);
+	right: auto;
+	margin: 0 auto;
+	text-align: center;
+}
+
+#f3 {
+	left: auto;
+	right: -15px;
+	text-align: right;
+}
+
+.animationMoveInFromLeft {
+	-webkit-animation-name: moveInFromLeft;
+	-webkit-animation-duration: 1s;
+	-webkit-animation-fill-mode: forwards;
+}
+
+.animationMoveOutFromLeft {
+	-webkit-animation-name: moveOutFromLeft;
+	-webkit-animation-duration: 1s;
+	-webkit-animation-fill-mode: forwards;
+}
+
+.animationMoveInFromRight {
+	-webkit-animation-name: moveInFromRight;
+	-webkit-animation-duration: 1s;
+	-webkit-animation-fill-mode: forwards;
+}
+
+.animationMoveOutFromRight {
+	-webkit-animation-name: moveOutFromRight;
+	-webkit-animation-duration: 1s;
+	-webkit-animation-fill-mode: forwards;
+}
+
+.animationMoveInFromBottom {
+	-webkit-animation-name: moveInFromBottom;
+	-webkit-animation-duration: 1s;
+	-webkit-animation-fill-mode: forwards;
+}
+
+.animationMoveOutFromBottom {
+	-webkit-animation-name: moveOutFromBottom;
+	-webkit-animation-duration: 1s;
+	-webkit-animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes moveInFromLeft {
+	0% {
+		left: -400px;
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+		left: 100px;
+	}
+}
+
+@-webkit-keyframes moveOutFromLeft {
+	0% {
+		left: 100px;
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+		left: -400px;
+	}
+}
+
+@-webkit-keyframes moveInFromRight {
+	0% {
+		right: -400px;
+		opacity: 0;
+	}
+	100% {
+		right: 100px;
+		opacity: 1;
+	}
+}
+
+@-webkit-keyframes moveOutFromRight {
+	0% {
+		right: 100px;
+		opacity: 1;
+	}
+	100% {
+		right: -400px;
+		opacity: 0;
+	}
+}
+
+
+@-webkit-keyframes moveInFromBottom {
+	0% {
+		bottom: -150px;
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+		bottom: 10%;
+		transform: translate(-50%, 10%);
+		-webkit-transform: translate(-50%, 10%);
+	}
+}
+
+@-webkit-keyframes moveOutFromBottom {
+	0% {
+		bottom: 60px;
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+		bottom: -150px;
+	}
+}

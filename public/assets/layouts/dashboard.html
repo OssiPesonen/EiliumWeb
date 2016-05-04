@@ -1,12 +1,9 @@
 <div id="main">
-     <div data-ng-show="debug-mode" data-ng-controller="debugController" class="debug-mode-notification">
-         Debug mode
-    </div>
-    <div data-ng-controller="usersUser" id="top-bar">
-        <user-menu></user-menu>
+    <div id="top-bar" class="clearfix">
+      <user-menu></user-menu>
     </div>
     <div id="content">
-        <div data-ng-controller="dashboardMain" id="test">
+        <div data-ng-controller="dashboardMain">
             <templates></templates>
         </div>
     </div>

@@ -1,0 +1,49 @@
+#box {
+	width: 200px;
+	height: 150px;
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,f2f7fb+100 */
+	background: #ffffff; /* Old browsers */
+	background: -moz-linear-gradient(top,  #ffffff 0%, #f2f7fb 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top,  #ffffff 0%,#f2f7fb 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom,  #ffffff 0%,#f2f7fb 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f2f7fb',GradientType=0 ); /* IE6-9 */
+	color: #000;
+	top: 90%;
+	transform: translateY(-90%);
+	-webkit-transform: translateY(-90%);
+	left: -1280px;
+	opacity: 0;
+	position: relative;
+}
+
+#boxContent {
+	padding: 50px 0;
+	color: #000;
+	height: 100%;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+span {
+	display: block;
+	margin-bottom: 0;
+	line-height: 18px;
+	opacity: 0;
+	transition: .15s linear;
+}
+
+#f0 {
+	font: 700 18px 'Montserrat';
+	margin-bottom: 5px;
+	color: #6787cf;
+}
+
+time {
+	opacity: 0;
+	font: 700 24px 'Montserrat';
+	transition: .15s linear;
+}
+
+*.show {
+	opacity: 1;
+}

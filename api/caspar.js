@@ -13,57 +13,35 @@
  */
 
 var CasparCG = require('caspar-cg');
-var ccg = new CasparCG("192.168.1.100", 5250);
+var ccg = new CasparCG("127.0.0.1", 5250);
 var _cg_connected = false;
 
-/**
- * Helper function for connection because it's used multiple times
- */
-function _connect(cb) {
-    if(_cg_connected) {
-        return true;
-    }
-
-    ccg.connect(function () {
-        ccg.on('connected', function () {
-            _cg_connected = true;
-            cb();
-            return _cg_connected;
-        });
-
-        ccg.on('error', function() {
-            _cg_connected = false;
-            return false;
-        });
-    });
-}
-
-/**
- * Helper function for disconnection
- */
-function _disconnect() {
-    ccg.disconnect();
-    _cg_connected = false;
-    return true;
-}
-
-module.exports = function(router, connection) {
+module.exports = function(router, connection, socket) {
     /**
      * Route: connect
      * Path: /api/casparcg/connect/
      *
-     * Connects to CasparCG server
+     * Attempts to connect to a CasparCG server
      *
      * Returns either a success code (200), or an error code 503 and message.
      */
     router.post('/casparcg/connect', function(req, res) {
-        _connect(function() {
-            if(_cg_connected) {
-                res.status(200).json({success: true, message: 'Connection successful'});
-            } else {
-                res.status(503).json({success: false, message: 'Something went wrong. Connection could not be made.', serverconn: false});
-            }
+        if(_cg_connected) {
+            socket.emit('serverConnected', {message: 'You have already connected', server_conn: true });
+            return res.status(200);
+        }
+
+        ccg.connect(function () {
+            res.status(200).json({success: true, message: 'Attempting to connect..'});
         });
+    });
+
+    router.get('/casparcg/is_connected', function(req, res) {
+        if(_cg_connected) {
+            return res.status(200).json({success: true, message: 'Already connected'});
+        } else {
+            return res.status(503).json({success: false, message: 'Not connected'});
+        }
     });
 
     /**
@@ -75,7 +53,8 @@ module.exports = function(router, connection) {
      * Returns a success code (200) and message
      */
     router.post('/casparcg/disconnect', function(req, res) {
-        _disconnect();
+        ccg.disconnect();
+        _cg_connected = false;
         return res.status(200).json({success: true, message: 'Disconnected from server'});
     });
 
@@ -89,18 +68,32 @@ module.exports = function(router, connection) {
      */
     router.post('/casparcg/play', function(req, res) {
         if(!_cg_connected) {
-            res.status(503).json({success: false, message: 'Not connected to server.', serverconn: false});
+            return res.status(503).json({success: false, message: 'Not connected to server.', serverconn: false});
         }
 
         var fields = req.body;
-        ccg.loadTemplate(fields.channel, 'JS/' + fields.template, 1, fields.inputs);
+
+        if(fields.template == 'groups' || fields.template == 'brackets') {
+            ccg.customCommand('MIXER 1 MASTERVOLUME 0');
+            ccg.customCommand('MIXER 1-1 OPACITY 0');
+            ccg.play('1-1','lantrek_final', {loop: true, transition: 'easein'});
+            ccg.customCommand('MIXER 1-1 OPACITY 1 30 EASEINSINE');
+        }
+
+        ccg.loadTemplate(fields.channel, 'JS/' + fields.template, 1, fields.inputs, function(response) {
+            if(response instanceof Error) {
+                return res.status(400).json({success: false, message: response.message});
+            } else {
+                return res.status(200).json({success: true, message: 'Template in layer ' + fields.channel + ' loaded and played'});
+            }
+        });
     });
 
     /**
      * Route: stop
      * Path: /api/casparcg/stop/
      *
-     * Stops a template in given channel
+     * Stops a template in given channel and layer
      * Request body example: { channel: '1-1' }
      *
      */
@@ -109,8 +102,45 @@ module.exports = function(router, connection) {
             return res.status(503).json({success: false, message: 'Not connected to server', serverconn: false});
         }
 
+
         var fields = req.body;
-        ccg.stopTemplate(fields.channel);
+        ccg.stopTemplate(fields.channel, function(response) {
+            if(response instanceof Error) {
+                return res.status(400).json({success: false, message: response.message});
+            } else {
+                ccg.customCommand('MIXER 1-1 OPACITY 0 30 EASEINSINE');
+                setTimeout(function() {
+                 ccg.customCommand('MIXER 1 MASTERVOLUME 1');
+                 ccg.stop('1-1');
+                 ccg.customCommand('MIXER 1-1 OPACITY 1 ');
+                }, 1000);
+
+                return res.status(200).json({success: true, message: 'Template in layer ' + fields.channel +' stopped'});
+            }
+        });
+    });
+
+    /**
+     * Route: clear
+     * Path: /api/casparcg/clear/
+     *
+     * Clears a given channel
+     * Request body example: { channel: '1-1' }
+     *
+     */
+    router.post('/casparcg/clear', function(req, res) {
+        if(!_cg_connected) {
+            return res.status(503).json({success: false, message: 'Not connected to server', serverconn: false});
+        }
+
+        var fields = req.body;
+        ccg.clear(fields.channel, function(response) {
+            if(response instanceof Error) {
+                return res.status(400).json({success: false, message: response.message});
+            } else {
+                return res.status(200).json({success: true, message: 'Channel cleared'});
+            }
+        });
     });
 
     /**
@@ -127,6 +157,42 @@ module.exports = function(router, connection) {
         }
 
         var fields = req.body;
-        ccg.updateTemplateData('1-1', fields.inputs);
+        ccg.updateTemplateData(fields.channel, fields.inputs);
+        return res.status(200).json({success: true, message: 'Template updated'});
+    });
+
+    /**
+     * TCP "listeners" for emitted events by caspar-cg.
+     * For each listener there is a socket emit which  are listened by AngularJS
+     * These determine if a connection has been gained or lost
+     * */
+    ccg.on('connected', function () {
+        _cg_connected = true;
+        socket.emit('serverConnected', {message: 'You have connected', server_conn: true});
+    });
+
+    ccg.on('error', function (error) {
+        _cg_connected = false;
+        socket.emit('serverDisconnected', {message: 'Server connection failed. Error: ' + error, server_conn: false});
+    });
+
+    ccg.on('connectionError', function (error) {
+        _cg_connected = false;
+        socket.emit('serverDisconnected', {message: 'Server connection failed. Error: ' + error, server_conn: false});
+    });
+
+    ccg.on('disconnected', function () {
+        _cg_connected = false;
+        socket.emit('serverDisconnected', {message: 'Disconnected.', server_conn: false});
+    });
+
+    ccg.on('end', function () {
+        _cg_connected = false;
+        socket.emit('serverDisconnected', {message: 'Connection ended', server_conn: false});
+    });
+
+    ccg.on('close', function () {
+        _cg_connected = false;
+        socket.emit('serverDisconnected', {message: 'Connection closed', server_conn: false});
     });
 };
