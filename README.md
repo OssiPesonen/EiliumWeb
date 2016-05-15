@@ -1,5 +1,5 @@
 # EiliumWeb
-### CasparCG Control Panel v. 0.0.1
+### CasparCG Control Panel v. 0.0.4
 
 HTML, CSS and JavaScript solution.
 
@@ -106,6 +106,7 @@ I will be building a configuration setting for this in the nearby future.
 
 - Create a configuration variable to disable need to log in
 - Configuration for CasparCG template directory path and hotkeys
+- Create more responsive templates so you can use 1080p and 720p without having two sets
 - Example entities (Players, Teams)
 - Creating more templates
   - Countdown
