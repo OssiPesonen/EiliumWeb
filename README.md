@@ -60,22 +60,6 @@ I remember one event having to deal with such an issue on an unrelated web app w
 
 Remember to disable registration afterwards.
 
-#### Disabling authentication
-
-In case you  do not wish to log in to the app you can disable the authentication by commenting or removing out
-the **resolve** and **auth** params from AngularJS routes in public/app.js
-
-After this you need to alter the api/authorization.js _authorize variable to just include
-
-    next();
-
-Or you can remove the authorization.authorize middlewares from the API routes.
-
-After this you can just go to /dashboard/ without needing to log in or change the index route to use dashboard template.
-
-I will be building a configuration setting for this in the nearby future.
-
-
 #### Database connection
 
 All inputs, configurations, hotkeys and possible entities will be saved to a MySQL database.
@@ -100,6 +84,22 @@ Do not use this authentication method on a live environment without changing two
     secure: true
 
 A cookie passed without HTTPS protocol makes it vulnerable and httpOnly prevents client side script access. You might also want to insert an expiration for the token. I also havent had time to test this 100% for faults.
+
+
+**Disabling authentication**
+
+In case you  do not wish to log in to the app you can disable the authentication by commenting or removing out
+the **resolve** and **auth** params from AngularJS routes in public/app.js
+
+After this you need to alter the api/authorization.js _authorize variable to just include
+
+    next();
+
+Or you can remove the authorization.authorize middlewares from the API routes.
+
+After this you can just go to /dashboard/ without needing to log in or change the index route to use dashboard template.
+
+I will be building a configuration setting for this in the nearby future.
 
 
 ## To-Do
