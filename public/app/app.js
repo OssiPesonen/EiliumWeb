@@ -97,9 +97,6 @@ app.config(function ($routeProvider, $locationProvider) {
             element.addClass('enter-in');
         }
     );
-})
-.directive('uiTabs', function () {
-    // Stuff here
 });
 
 app.factory('socket', function ($rootScope) {

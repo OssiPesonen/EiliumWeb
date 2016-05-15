@@ -13,8 +13,9 @@
  */
 
 var CasparCG = require('caspar-cg');
-var ccg = new CasparCG("127.0.0.1", 5250);
+var ccg = new CasparCG("192.168.1.100", 5250);
 var _cg_connected = false;
+var authorization = require('./authorization');
 
 module.exports = function(router, connection, socket) {
     /**
@@ -25,7 +26,7 @@ module.exports = function(router, connection, socket) {
      *
      * Returns either a success code (200), or an error code 503 and message.
      */
-    router.post('/casparcg/connect', function(req, res) {
+    router.post('/casparcg/connect', authorization.authorize, function(req, res) {
         if(_cg_connected) {
             socket.emit('serverConnected', {message: 'You have already connected', server_conn: true });
             return res.status(200);
@@ -36,7 +37,7 @@ module.exports = function(router, connection, socket) {
         });
     });
 
-    router.get('/casparcg/is_connected', function(req, res) {
+    router.get('/casparcg/is_connected',  authorization.authorize, function(req, res) {
         if(_cg_connected) {
             return res.status(200).json({success: true, message: 'Already connected'});
         } else {
@@ -52,7 +53,7 @@ module.exports = function(router, connection, socket) {
      *
      * Returns a success code (200) and message
      */
-    router.post('/casparcg/disconnect', function(req, res) {
+    router.post('/casparcg/disconnect', authorization.authorize, function(req, res) {
         ccg.disconnect();
         _cg_connected = false;
         return res.status(200).json({success: true, message: 'Disconnected from server'});
@@ -66,7 +67,7 @@ module.exports = function(router, connection, socket) {
      * Request body example: { channel: '1-1', template: 'information', inputs: { f0: 'First', f1: 'Second', f2: 'Third } }
      *
      */
-    router.post('/casparcg/play', function(req, res) {
+    router.post('/casparcg/play',  authorization.authorize, function(req, res) {
         if(!_cg_connected) {
             return res.status(503).json({success: false, message: 'Not connected to server.', serverconn: false});
         }
@@ -97,7 +98,7 @@ module.exports = function(router, connection, socket) {
      * Request body example: { channel: '1-1' }
      *
      */
-    router.post('/casparcg/stop', function(req, res) {
+    router.post('/casparcg/stop',  authorization.authorize, function(req, res) {
         if(!_cg_connected) {
             return res.status(503).json({success: false, message: 'Not connected to server', serverconn: false});
         }
@@ -128,7 +129,7 @@ module.exports = function(router, connection, socket) {
      * Request body example: { channel: '1-1' }
      *
      */
-    router.post('/casparcg/clear', function(req, res) {
+    router.post('/casparcg/clear',  authorization.authorize, function(req, res) {
         if(!_cg_connected) {
             return res.status(503).json({success: false, message: 'Not connected to server', serverconn: false});
         }
@@ -151,7 +152,7 @@ module.exports = function(router, connection, socket) {
      * Request body example: { channel: '1-1', inputs: { f0: 'First', f1: 'Second', f2: 'Third } }
      *
      */
-    router.put('/casparcg/update', function(req, res) {
+    router.put('/casparcg/update', authorization.authorize,  function(req, res) {
         if(!_cg_connected) {
             return res.status(503).json({success: false, message: 'Not connected to server'});
         }

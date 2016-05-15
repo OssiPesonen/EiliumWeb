@@ -1,11 +1,12 @@
 var config = require('../config'); // get our config file
+var authorization = require('./authorization');
 
 module.exports = function (router, connection) {
     router.get('/debug', function (req, res) {
         res.json(config.debug);
     });
 
-    router.post('/save', function (req, res) {
+    router.post('/save', authorization.authorize, function (req, res) {
         var inputs = req.body.inputs;
 
         connection.query("DELETE FROM fields");
@@ -31,13 +32,13 @@ module.exports = function (router, connection) {
         return res.status(200).json({success: true, message: ''});
     });
 
-    router.get('/fields', function(req, res) {
-            connection.query("SELECT template, `key`, `value` FROM fields", function(error, result) {
-                if(error) {
-                    return res.status(400).json({success: false, message: 'Something went wrong. ' + error});
-                } else {
-                    return res.status(200).json({success: true, fields: result});
-                }
-            });
+    router.get('/fields', authorization.authorize, function(req, res) {
+        connection.query("SELECT template, `key`, `value` FROM fields", function(error, result) {
+            if(error) {
+                return res.status(400).json({success: false, message: 'Something went wrong. ' + error});
+            } else {
+                return res.status(200).json({success: true, fields: result});
+            }
+        });
     });
 };

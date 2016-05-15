@@ -60,15 +60,31 @@ I remember one event having to deal with such an issue on an unrelated web app w
 
 Remember to disable registration afterwards.
 
+#### Disabling authentication
+
+In case you  do not wish to log in to the app you can disable the authentication by commenting or removing out
+the **resolve** and **auth** params from AngularJS routes in public/app.js
+
+After this you need to alter the api/authorization.js _authorize variable to just include
+
+    next();
+
+Or you can remove the authorization.authorize middlewares from the API routes.
+
+After this you can just go to /dashboard/ without needing to log in or change the index route to use dashboard template.
+
+I will be building a configuration setting for this in the nearby future.
+
+
 #### Database connection
 
-All inputs, configurations, hotkeys and possible entities will be saved to a MySQL database. I went with MySQL instead of MongoDB because I'm more familiar with it.
+All inputs, configurations, hotkeys and possible entities will be saved to a MySQL database.
 
 I might, in a later time, write small helper functions to handle data retrieval better.
 
 #### Socket.io
 
-All Net events such as connection, disconnection and errors are transported via socket.io to AngularJS which listens to these events. The events then flip the connection button.
+All Net events such as connection, disconnection and errors are transported via socket.io to AngularJS which listens to these events. The events then flip the connection button and notifies you of connection status.
 
 ## Notes
 
@@ -88,23 +104,19 @@ A cookie passed without HTTPS protocol makes it vulnerable and httpOnly prevents
 
 ## To-Do
 
+- Create a configuration variable to disable need to log in
 - Configuration for CasparCG template directory path and hotkeys
-- Storing all inputs in database
 - Example entities (Players, Teams)
 - Creating more templates
   - Countdown
   - Twitter
-  - Casters
-  - Schedule
-  - Groups
-  - Playoffs
+  - Integrate groups and playoffs to local tournaments system
   - Player presentation
   - Team presentation
   - End credits
   - Scoreboard
-  - Advertisements
-- Image handling for templates
-- Beta test at Lantrek '16
+- Possible image upload and presentation in templates
+- Reading media folder and playing videos
 
 ## Future updates
 
