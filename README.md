@@ -3,7 +3,7 @@
 
 HTML, CSS and JavaScript solution.
 
-Built with AngularJS and Node.js making it lightweight and super fast. This is merely a skeleton with only one working test template. It includes a CasparCG Node.js library for communication (https://github.com/respectTheCode/node-caspar-cg) which I have not yet had the pleasure of testing completely.
+Built with AngularJS and Node.js making it lightweight and super fast. It includes a CasparCG Node.js library for communication (https://github.com/respectTheCode/node-caspar-cg) which I have not yet had the pleasure of testing completely.
 
 **Requirements**
 
@@ -31,7 +31,13 @@ Built with AngularJS and Node.js making it lightweight and super fast. This is m
 - Open project folder with cmd and write:
     - npm install
     - node server.js
+- Alter the node_modules/caspar-cg/lib/playout.js file by adding the following method there (atleast until the library gets updated if it does)
 
+
+    ccg.prototype.customCommand = function (cmd) {
+        var self = this;
+        self.sendCommand(cmd);
+    };
 
 **Directory structure**
 
