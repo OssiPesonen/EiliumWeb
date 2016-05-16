@@ -31,13 +31,6 @@ Built with AngularJS and Node.js making it lightweight and super fast. It includ
 - Open project folder with cmd and write:
     - npm install
     - node server.js
-- Alter the node_modules/caspar-cg/lib/playout.js file by adding the following method there (atleast until the library gets updated if it does)
-
-
-    ccg.prototype.customCommand = function (cmd) {
-        var self = this;
-        self.sendCommand(cmd);
-    };
 
 **Directory structure**
 

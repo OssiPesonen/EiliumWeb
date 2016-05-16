@@ -75,10 +75,10 @@ module.exports = function(router, connection, socket) {
         var fields = req.body;
 
         if(fields.template == 'groups' || fields.template == 'brackets') {
-            ccg.customCommand('MIXER 1 MASTERVOLUME 0');
-            ccg.customCommand('MIXER 1-1 OPACITY 0');
+            ccg.sendCommand('MIXER 1 MASTERVOLUME 0');
+            ccg.sendCommand('MIXER 1-1 OPACITY 0');
             ccg.play('1-1','lantrek_final', {loop: true, transition: 'easein'});
-            ccg.customCommand('MIXER 1-1 OPACITY 1 30 EASEINSINE');
+            ccg.sendCommand('MIXER 1-1 OPACITY 1 30 EASEINSINE');
         }
 
         ccg.loadTemplate(fields.channel, 'JS/' + fields.template, 1, fields.inputs, function(response) {
@@ -109,11 +109,11 @@ module.exports = function(router, connection, socket) {
             if(response instanceof Error) {
                 return res.status(400).json({success: false, message: response.message});
             } else {
-                ccg.customCommand('MIXER 1-1 OPACITY 0 30 EASEINSINE');
+                ccg.sendCommand('MIXER 1-1 OPACITY 0 30 EASEINSINE');
                 setTimeout(function() {
-                 ccg.customCommand('MIXER 1 MASTERVOLUME 1');
+                 ccg.sendCommand('MIXER 1 MASTERVOLUME 1');
                  ccg.stop('1-1');
-                 ccg.customCommand('MIXER 1-1 OPACITY 1 ');
+                 ccg.sendCommand('MIXER 1-1 OPACITY 1 ');
                 }, 1000);
 
                 return res.status(200).json({success: true, message: 'Template in layer ' + fields.channel +' stopped'});
