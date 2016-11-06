@@ -5,6 +5,10 @@ HTML, CSS and JavaScript solution.
 
 Built with AngularJS and Node.js making it lightweight and super fast. It includes a CasparCG Node.js library for communication (https://github.com/respectTheCode/node-caspar-cg) which I have not yet had the pleasure of testing completely.
 
+## Project on hiatus
+
+This project has been suspended until further notice.
+
 **Requirements**
 
 - Node.js
